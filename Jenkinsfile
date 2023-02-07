@@ -33,9 +33,7 @@ pipeline {
         stage('Quality Gate') {
       steps {
         timeout(time: 10, unit: 'MINUTES') {
-              /* groovylint-disable-next-line NestedBlockDepth */
           script {
-                /* groovylint-disable-next-line DuplicateStringLiteral */
             def qg = waitForQualityGate(webhookSecretId: sonarqubeCredentials)
             if (qg.status != 'OK') {
               error "Pipeline aborted due to quality gate failure: ${qg.status}"
